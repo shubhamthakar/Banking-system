@@ -1,0 +1,48 @@
+{% extends 'bank/base.html' %}
+
+{% block content %}
+    <h2>Account Statement for Account No. {{user_acct.acct_no}}</h2>
+    <style>
+            td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                    }
+    </style>
+    {% if q1 %}
+    <table>
+        <tr>
+            <th>Date & Time</th>
+            <th>Debit Amt.</th>
+            <th>Credit Amt.</th>
+            <th>Account No.</th>
+        </tr>
+        {% for val in q1 %}
+
+            {% if val.deb_acct_num.acct_no == user_acct.acct_no %}
+            <tr>
+                <td>{{ val.trans_date}}</td>
+                <td>{{ val.amount }}</td>
+                <td> - </td>
+                <td>{{ val.cred_acct_num.acct_no }}</td>
+            </tr>
+            {% endif %}
+
+            {% if val.cred_acct_num.acct_no == user_acct.acct_no %}
+            <tr>
+                <td>{{ val.trans_date }}</td>
+                <td> - </td>
+                <td>{{ val.amount }}</td>
+                <td>{{ val.deb_acct_num.acct_no }}</td>
+            </tr>
+            {% endif %}
+
+    {% endfor %}
+    </table>
+    {% else %}
+    <h3>No statement to show</h3>
+    {% endif %}
+    <h4>Current Balance: {{user_acct.balance}}</h4>
+    <br>
+    <button type="button" class="btn btn-default" onclick = window.print()>Print</button>
+{% endblock %}

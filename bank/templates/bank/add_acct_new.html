@@ -1,0 +1,13 @@
+{% extends 'bank/base.html' %}
+    {% block content %}
+        <form method="POST" class="post-form" autocomplete="off">{% csrf_token %}
+        {{ form1.as_p }}    <!--render form as paragrah. Will wrap the form in <p> tags-->
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <br>
+    {% for msg in messages %}
+    <p style = color:red >{{msg}}</p>
+    {% endfor %}
+    <a href="{% url 'create' %}" class="btn btn-primary">Register Instead</a>
+    <a href="{% url 'login_page' %}" class = "btn btn-primary">Login Instead</a>
+    {% endblock %} 

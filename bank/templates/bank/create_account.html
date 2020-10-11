@@ -1,0 +1,13 @@
+{% extends 'bank/base.html'%}
+  {% block content %}
+      <h1>Please sign up here</h1>
+      <form method="post" autocomplete="off">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" class='btn btn-primary' name="" value="Submit">
+
+      </form>
+      {% for msg in messages %}
+      <p style = color:red >{{msg}}</p>
+      {% endfor %}
+  {% endblock %}

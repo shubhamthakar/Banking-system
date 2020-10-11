@@ -1,14 +1,18 @@
 {% extends 'bank/base.html' %}
 
 {% block content %}
-    <h2>Welcome {{acct.customer}}</h2>
+    <a href="add_ph/" class="btn btn-primary" style="float:right">Addphno</a>
+    <h2>Welcome {{acct.customer.fname}} {{acct.customer.lname}}</h2>
     <h2>Balance is : {{acct.balance}}</h2>
     <h2>Transfer Money</h2>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="post-form" autocomplete="off">{% csrf_token %}
         {{ transForm.as_p }}    <!--render form as paragrah. Will wrap the form in <p> tags-->
         <button type="submit" class="btn btn-default">Transfer</button>
     </form>
     {% for msg in messages %}
-    <p style = color:red >{{msg}}</p>
+        <p style="color: red;">{{msg}}</p>
     {% endfor %}
+    <br>
+    <a href = "statement/" class="btn btn-primary">
+        View Account Statement</a>
 {% endblock %}
