@@ -3,7 +3,7 @@
   <h1 style="text-align: center">Welcome to ABC Bank</h1>
   <a href="create/" class = "btn btn-primary" style="  display: block; margin: auto; width: 30%;">Register</a>
   <br>
-  <a href="add/" class = "btn btn-primary" style="  display: block; margin: auto; width: 30%;">Add Account (Existing Customer)</a>
+  <a href="{% url 'cust_add_acct'%}" class = "btn btn-primary" style="  display: block; margin: auto; width: 30%;">Add Account (Existing Customer)</a>
   <br>
   <a href="login/" class="btn btn-primary" style="  display: block; margin: auto; width: 30%;">Login</a>
 {% endblock %} 

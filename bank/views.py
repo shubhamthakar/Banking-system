@@ -79,21 +79,14 @@ def create(request):
 
 def pinnumber(request,pan):
 
-    form1 = PinForm()
     balance = 0
     acct_no = random.randrange(64000000000,65000000000)
     old_cust = customer.objects.filter(pan = pan).first()
     all_acct = account.objects.filter(customer = old_cust)
-
-    if request.method== "POST":
-        form1 = PinForm(request.POST)
-        if form1.is_valid():
-            pin = request.POST.get('pin')
-            pann = customer.objects.get(pan=pan)
-            t = account(acct_no=acct_no,customer=pann,pin=pin,balance=balance)
-            t.save()
-            return redirect('login_page')
-    return render(request,'bank/account_pin.html',{'form1':form1,'acct_no':acct_no,'all_acct':all_acct})
+    pin = random.randrange(100000,999999)
+    t = account(acct_no=acct_no, customer=old_cust, pin=pin, balance=balance)
+    t.save()
+    return render(request,'bank/account_pin.html',{'acct_no':acct_no,'all_acct':all_acct, 'pin':pin})
 
 def acct_statement(request, acct_no):
     user_acct = account.objects.get(acct_no=acct_no)
@@ -130,15 +123,13 @@ def add_ph(request, acct_no):
 def cust_add_acct(request):
     form1 = AddAcctForm()
     if request.method == 'POST':
-        form1 = AddAcctForm(request.POST)
-        if form1.is_valid():
-            pan = request.POST.get('pan')
-            fname = request.POST.get('fname')  
-            lname = request.POST.get('lname')
-            old_cust = customer.objects.filter(pan = pan, fname = fname, lname = lname).first()
-            if old_cust is not None:
-                return redirect("pin_number",pan=pan)
-            else:
-                messages.info(request, '* No records found')
-                return redirect('cust_add_acct')
+        pan = request.POST.get('pan')
+        fname = request.POST.get('fname')  
+        lname = request.POST.get('lname')
+        old_cust = customer.objects.filter(pan = pan, fname = fname, lname = lname).first()
+        if old_cust is not None:
+            return redirect("pin_number",pan=pan)
+        else:
+            messages.info(request, '* No records found')
+            return redirect('cust_add_acct')
     return render(request, 'bank/add_acct_new.html',{'form1':form1})

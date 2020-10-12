@@ -23,12 +23,10 @@
       <br>
       <h1>Your new account number is : {{acct_no}}</h1>
       <p style="color: red;">* Please make a note of your new account number</p>
-      <h1>Please enter your pin :</h1>
-      <form method="post" autocomplete="off">
-        {{ form1.as_p }}
-        {% csrf_token %}
-        <input type="submit" class='btn btn-primary' name="" value="Submit">
+      <h1>Your new pin number is : {{pin}}</h1>
+      <p style="color: red;">* Please make a note of your new pin</p>
+      <a href = "{% url 'login_page' %}" class = "btn btn-primary">Back to login</a>
 
-      </form>
+
 
   {% endblock %} 
