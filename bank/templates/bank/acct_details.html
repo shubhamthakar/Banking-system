@@ -1,6 +1,8 @@
 {% extends 'bank/base.html' %}
 
 {% block content %}
+    <a href="{% url 'login_page' %}" class="btn btn-primary" style="float:right">Logout</a>
+    <br><br>
     <a href="add_ph/" class="btn btn-primary" style="float:right">Addphno</a>
     <h2>Welcome {{acct.customer.fname}} {{acct.customer.lname}}</h2>
     <h2>Balance is : {{acct.balance}}</h2>
@@ -13,6 +15,6 @@
         <p style="color: red;">{{msg}}</p>
     {% endfor %}
     <br>
-    <a href = "statement/" class="btn btn-primary">
-        View Account Statement</a>
+    <a href = "statement/" class="btn btn-primary">View Account Statement</a>
+    <br><br><br><br>
 {% endblock %}

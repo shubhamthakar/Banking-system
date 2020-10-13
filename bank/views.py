@@ -124,9 +124,7 @@ def cust_add_acct(request):
     form1 = AddAcctForm()
     if request.method == 'POST':
         pan = request.POST.get('pan')
-        fname = request.POST.get('fname')  
-        lname = request.POST.get('lname')
-        old_cust = customer.objects.filter(pan = pan, fname = fname, lname = lname).first()
+        old_cust = customer.objects.filter(pan = pan).first()
         if old_cust is not None:
             return redirect("pin_number",pan=pan)
         else:
